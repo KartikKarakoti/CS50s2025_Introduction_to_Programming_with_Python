@@ -1,0 +1,15 @@
+def main():
+    # Speed of light in meters per second
+    c = 300000000
+
+    # Prompt user for mass (integer)
+    mass = int(input("Mass (in kg): "))
+
+    # Calculate energy
+    energy = mass * c**2
+
+    # Output energy as integer
+    print(energy)
+
+if __name__ == "__main__":
+    main()
