@@ -1,0 +1,12 @@
+def main():
+    # Prompt user for input
+    text = input("Say something: ")
+
+    # Replace each space with "..."
+    playback = text.replace(" ", "...")
+
+    # Output the modified text
+    print(playback)
+
+if __name__ == "__main__":
+    main()
