@@ -1,0 +1,9 @@
+def main():
+    # Prompt the user for input
+    text = input("Say something: ")
+
+    # Print the text in lowercase
+    print(text.lower())
+
+if __name__ == "__main__":
+    main()
