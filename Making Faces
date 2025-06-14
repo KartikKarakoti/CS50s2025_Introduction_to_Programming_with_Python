@@ -1,0 +1,15 @@
+def convert(text):
+    # Replace emoticons with emoji
+    text = text.replace(":)", "🙂")
+    text = text.replace(":(", "🙁")
+    return text
+
+def main():
+    # Prompt user for input
+    user_input = input("Enter your text: ")
+
+    # Convert and print the result
+    print(convert(user_input))
+
+if __name__ == "__main__":
+    main()
