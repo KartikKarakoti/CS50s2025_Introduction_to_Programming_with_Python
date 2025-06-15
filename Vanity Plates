@@ -1,0 +1,42 @@
+def is_valid(s):
+    # Rule 1 and 2: Length must be between 2 and 6
+    if len(s) < 2 or len(s) > 6:
+        return False
+
+    # Rule 3: First two characters must be letters
+    if not s[:2].isalpha():
+        return False
+
+    # Rule 4 & 5: Only letters and numbers allowed
+    if not s.isalnum():
+        return False
+
+    number_found = False
+
+    for i, char in enumerate(s):
+        if char.isdigit():
+            if not number_found:
+                # First number found
+                number_found = True
+                if char == '0':
+                    return False  # First number cannot be '0'
+            else:
+                continue  # We are still at the end
+
+        elif number_found:
+            # If a letter comes after a number, it's invalid
+            return False
+
+    return True
+
+
+def main():
+    plate = input("Plate: ")
+    if is_valid(plate):
+        print("Valid")
+    else:
+        print("Invalid")
+
+
+if __name__ == "__main__":
+    main()
