@@ -1,0 +1,25 @@
+def main():
+    menu = {
+        "Burrito": 10.95,
+        "Bowl": 9.95,
+        "Taco": 3.00,
+        "Nachos": 11.25,
+        "Quesadilla": 8.50,
+        "Super Burrito": 11.50,
+        "Super Quesadilla": 9.50,
+        "Tortilla Salad": 8.00
+    }
+
+    total = 0.0
+
+    try:
+        while True:
+            item = input("Item: ").title()
+            if item in menu:
+                total += menu[item]
+                print(f"Total: ${total:.2f}")
+    except EOFError:
+        print()  # For clean exit formatting
+
+if __name__ == "__main__":
+    main()
