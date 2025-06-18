@@ -1,0 +1,28 @@
+import sys
+import pyfiglet
+
+def main():
+    # Get a list of available fonts
+    available_fonts = pyfiglet.FigletFont.getFonts()
+
+    # Handle command-line arguments
+    if len(sys.argv) == 1:
+        # No font specified, use random
+        figlet = pyfiglet.Figlet()
+    elif len(sys.argv) == 3 and sys.argv[1] in ["-f", "--font"]:
+        font_name = sys.argv[2]
+        if font_name not in available_fonts:
+            sys.exit("Invalid font name.")
+        figlet = pyfiglet.Figlet(font=font_name)
+    else:
+        sys.exit("Usage: figlet.py [-f FONT]")
+
+    # Prompt user for input text
+    text = input("Input: ")
+
+    # Print the ASCII art
+    print("Output:")
+    print(figlet.renderText(text))
+
+if __name__ == "__main__":
+    main()
