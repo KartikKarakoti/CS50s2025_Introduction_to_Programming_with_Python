@@ -1,0 +1,31 @@
+import random
+
+def get_positive_integer(prompt):
+    while True:
+        try:
+            n = int(input(prompt))
+            if n > 0:
+                return n
+        except ValueError:
+            pass
+
+def main():
+    # Get level
+    level = get_positive_integer("Level: ")
+
+    # Generate secret number
+    number = random.randint(1, level)
+
+    # Guess loop
+    while True:
+        guess = get_positive_integer("Guess: ")
+        if guess < number:
+            print("Too small!")
+        elif guess > number:
+            print("Too large!")
+        else:
+            print("Just right!")
+            break
+
+if __name__ == "__main__":
+    main()
