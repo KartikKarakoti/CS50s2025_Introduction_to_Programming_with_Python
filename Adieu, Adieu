@@ -1,0 +1,25 @@
+import sys
+
+def main():
+    names = []
+
+    # Keep asking for names until EOF (Ctrl-D)
+    try:
+        while True:
+            name = input()
+            names.append(name)
+    except EOFError:
+        print()  # print a newline after ^D is pressed
+
+    # Format the list properly
+    if len(names) == 1:
+        farewell = names[0]
+    elif len(names) == 2:
+        farewell = f"{names[0]} and {names[1]}"
+    else:
+        farewell = ", ".join(names[:-1]) + f", and {names[-1]}"
+
+    print(f"Adieu, adieu, to {farewell}")
+
+if __name__ == "__main__":
+    main()
