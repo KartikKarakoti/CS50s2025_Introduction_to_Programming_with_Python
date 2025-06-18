@@ -1,0 +1,10 @@
+import emoji
+
+# Prompt user for input
+user_input = input("Input: ")
+
+# Convert codes/aliases to emoji
+emojized_output = emoji.emojize(user_input, language="alias")
+
+# Print the result
+print("Output:", emojized_output)
