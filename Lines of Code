@@ -1,0 +1,38 @@
+# lines.py
+
+import sys
+import os
+
+def main():
+    # Check for exactly one command-line argument
+    if len(sys.argv) != 2:
+        sys.exit("Usage: python lines.py filename.py")
+
+    filename = sys.argv[1]
+
+    # Check file extension
+    if not filename.endswith(".py"):
+        sys.exit("Not a Python file")
+
+    # Check if file exists
+    if not os.path.isfile(filename):
+        sys.exit("File does not exist")
+
+    # Count lines of code
+    try:
+        with open(filename, "r") as file:
+            lines = file.readlines()
+            count = 0
+            for line in lines:
+                stripped = line.strip()
+                if stripped == "":
+                    continue  # Blank line
+                if stripped.startswith("#"):
+                    continue  # Comment line
+                count += 1
+            print(count)
+    except FileNotFoundError:
+        sys.exit("File not found")
+
+if __name__ == "__main__":
+    main()
