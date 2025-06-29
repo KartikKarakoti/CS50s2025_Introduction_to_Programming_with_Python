@@ -1,0 +1,39 @@
+import sys
+import csv
+
+def main():
+    # Check command-line arguments
+    if len(sys.argv) < 3:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 3:
+        sys.exit("Too many command-line arguments")
+
+    input_file = sys.argv[1]
+    output_file = sys.argv[2]
+
+    # Try to read the input file
+    try:
+        with open(input_file, "r") as infile:
+            reader = csv.DictReader(infile)
+            students = []
+
+            for row in reader:
+                last, first = row["name"].split(", ")
+                students.append({
+                    "first": first,
+                    "last": last,
+                    "house": row["house"]
+                })
+
+    except FileNotFoundError:
+        sys.exit(f"Could not read {input_file}")
+
+    # Write to the output file
+    with open(output_file, "w", newline="") as outfile:
+        writer = csv.DictWriter(outfile, fieldnames=["first", "last", "house"])
+        writer.writeheader()
+        for student in students:
+            writer.writerow(student)
+
+if __name__ == "__main__":
+    main()
