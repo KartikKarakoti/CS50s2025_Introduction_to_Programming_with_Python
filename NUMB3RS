@@ -1,0 +1,27 @@
+import re
+import sys
+
+
+def main():
+    print(validate(input("IPv4 Address: ")))
+
+
+def validate(ip):
+    # Match pattern of 4 numbers separated by dots
+    if re.match(r"^\d+\.\d+\.\d+\.\d+$", ip):
+        parts = ip.split(".")
+        if len(parts) != 4:
+            return False
+        for part in parts:
+            # No leading zeros allowed (except '0' itself)
+            if part.startswith("0") and len(part) > 1:
+                return False
+            # Must be between 0 and 255
+            if not 0 <= int(part) <= 255:
+                return False
+        return True
+    return False
+
+
+if __name__ == "__main__":
+    main()
