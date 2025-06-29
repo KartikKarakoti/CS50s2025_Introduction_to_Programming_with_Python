@@ -1,0 +1,27 @@
+from fpdf import FPDF
+
+def main():
+    name = input("Name: ")
+    create_shirtificate(name)
+
+def create_shirtificate(name):
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
+    pdf.add_page()
+
+    # Set Title
+    pdf.set_font("Helvetica", "B", 24)
+    pdf.cell(0, 20, "CS50 Shirtificate", align="C", ln=True)
+
+    # Add shirt image
+    pdf.image("shirtificate.png", x=0, y=40, w=210)
+
+    # Add name text over the shirt
+    pdf.set_font("Helvetica", "B", 18)
+    pdf.set_text_color(255, 255, 255)  # White
+    pdf.text(x=45, y=145, txt=f"{name} took CS50")
+
+    # Save the PDF
+    pdf.output("shirtificate.pdf")
+
+if __name__ == "__main__":
+    main()
