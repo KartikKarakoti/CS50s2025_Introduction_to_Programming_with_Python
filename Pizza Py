@@ -1,0 +1,35 @@
+import sys
+import csv
+from tabulate import tabulate
+import os
+
+def main():
+    # Check for correct number of command-line arguments
+    if len(sys.argv) < 2:
+        sys.exit("Too few command-line arguments")
+    elif len(sys.argv) > 2:
+        sys.exit("Too many command-line arguments")
+
+    filename = sys.argv[1]
+
+    # Check file extension
+    if not filename.endswith(".csv"):
+        sys.exit("Not a CSV file")
+
+    # Check if file exists
+    if not os.path.isfile(filename):
+        sys.exit("File does not exist")
+
+    # Read and print CSV in table format
+    try:
+        with open(filename, "r") as file:
+            reader = csv.reader(file)
+            table = list(reader)
+            headers = table[0]
+            rows = table[1:]
+            print(tabulate(rows, headers, tablefmt="grid"))
+    except Exception as e:
+        sys.exit(e)
+
+if __name__ == "__main__":
+    main()
